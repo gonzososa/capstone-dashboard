@@ -1,4 +1,9 @@
 {
-    "route": "/api*",
-    "allowedRoles": ["authenticated"]
+    "trailingSlash": "auto",
+    "routes":[
+        {
+            "route": "/api*",
+            "allowedRoles": ["authenticated"]
+        }
+    ]
 }
