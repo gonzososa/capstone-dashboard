@@ -1,4 +1,4 @@
 {
-    "route": "/api",
+    "route": "/api*",
     "allowedRoles": ["authenticated"]
 }
