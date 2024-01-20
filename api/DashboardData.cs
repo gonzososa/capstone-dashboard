@@ -27,11 +27,11 @@ namespace api
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;*/
             
-            List<string> headers = new List<string>();
+            Dictionary<string, string> headers = new Dictionary<string, string>();
 
             foreach (var key in req.Headers.Keys) {
                 if (req.Headers.TryGetValue (key, out StringValues val)) {
-                    headers.Add (val.ToString());
+                    headers.Add (key, val.ToString());
                 } 
             }
 
