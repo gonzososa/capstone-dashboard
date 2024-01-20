@@ -5,5 +5,11 @@
             "route": "/api*",
             "allowedRoles": ["authenticated"]
         }
-    ]
+    ],
+    "responseOverrides": {
+        "401": {
+            "rewrite": "/custom_404.html",
+            "statusCode": 200
+        }
+    }
 }
