@@ -10,6 +10,10 @@
         "401": {
             "rewrite": "/401.html",
             "statusCode": 401
+        },
+        "404":{
+            "rewrite": "/404.html",
+            "statusCode": 404
         }
     }
 }
