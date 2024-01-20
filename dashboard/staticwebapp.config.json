@@ -8,8 +8,8 @@
     ],
     "responseOverrides": {
         "401": {
-            "rewrite": "/custom_404.html",
-            "statusCode": 200
+            "rewrite": "/401.html",
+            "statusCode": 401
         }
     }
 }
