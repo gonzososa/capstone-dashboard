@@ -1,9 +1,8 @@
 import axios from "axios";
 import API from './config';
+import parseList from "./action-utils";
 
 export const getAllData = async () => {
-    console.log(API)
-    const response = await axios.get(`${API}/GetAllData`);
-    console.log(response.data);
-    return response;
+    const response = await axios.get (`${API}/GetAllData`);
+    return parseList (response);
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using CapstoneProject.Data;
 using Newtonsoft.Json;
+using System.Web.Http;
 
 namespace CapstoneProject
 {
@@ -16,11 +17,19 @@ namespace CapstoneProject
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] 
             HttpRequest req,
             ILogger log)
-        {            
-            log.LogInformation ($"Function GetAllData running...");
-            var data = await CapstoneData.GetAllData ();
-            var result = JsonConvert.SerializeObject (data);
-            return new OkObjectResult (result);
+        {   
+            try {
+                log.LogInformation ("Function GetAllData running...");
+                var data = await CapstoneData.GetAllData (log);
+                var result = JsonConvert.SerializeObject (data);
+                log.LogInformation ("Data gathered successfully");
+                
+                return new OkObjectResult (result);
+            }
+            catch (System.Exception e) {
+                log.LogError (e, "An error occurred while function executing!");
+                return new InternalServerErrorResult ();                
+            }
         }
     }
 }
