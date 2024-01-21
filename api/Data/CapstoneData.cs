@@ -48,7 +48,7 @@ public class CapstoneData {
         }
         finally {
             if (connection?.State != ConnectionState.Closed) {
-                connection.Close ();
+                connection?.Close ();
             }
         }
     }

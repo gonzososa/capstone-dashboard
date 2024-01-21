@@ -20,7 +20,6 @@ namespace CapstoneProject
         {   
             try {
                 log.LogInformation ("Function GetAllData running...");
-                
                 var data = await CapstoneData.GetAllData (log);
                 var result = JsonConvert.SerializeObject (data);
                 log.LogInformation ("Data gathered successfully");
