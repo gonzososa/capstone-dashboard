@@ -10,25 +10,8 @@ import {
     Tooltip,
     Legend
 } from "chart.js";
-import { 
-    Container,
-    Row,
-    Col
-} from "react-bootstrap";
 
-function CapstoneChart ({data}) {
-    const chartData = data.map(item => 
-        (
-            {  
-                Temperature: item.Temperature,
-                Humidity: item.Humidity,
-                TimeStamp: item.TimeStamp
-            }
-        )
-    );
-
-    const labels = chartData.map (item => item.TimeStamp);
-    
+function CapstoneChart (props) {
     Chart.register (
         CategoryScale, 
         LineElement, 
@@ -38,7 +21,9 @@ function CapstoneChart ({data}) {
         Tooltip,
         Legend
     );
-
+    
+    const labels = props.labels;
+    
     const options = {
         reponsive: true,
         plugins: {
@@ -47,46 +32,25 @@ function CapstoneChart ({data}) {
             },
             title: {
                 display: true,
-                text: 'Sensors chart'
+                text: props.title
             }
         }
     }
 
-    const temperatureSerie = {
+    const serie = {
         labels,
         datasets: [
             {
-                label: 'Temperature',
-                data: chartData.map(item => item.Temperature),
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255,99,132,0.5)'
+                label: props.legend,
+                data: props.serie,
+                borderColor: props.color,
+                backgroundColor: props.backgroundColor
             }
         ]
     };
 
-    const humiditySerie = {
-        labels,
-        datasets: [
-            {
-                label: 'Humidity',
-                data: chartData.map(item => item.Humidity),
-                borderColor: 'rgb(53,162,235)',
-                backgroundColor: 'rgba(53,162,235,0.5)'
-            }
-        ]
-    }
-
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <Line options={options} data={temperatureSerie} />
-                </Col>
-                <Col>
-                    <Line options={options} data={humiditySerie} />
-                </Col>
-            </Row>
-        </Container>
+        <Line options={options} data={serie} />
     );
 }
 

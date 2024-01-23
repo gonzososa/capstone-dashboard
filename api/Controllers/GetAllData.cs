@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace CapstoneProject
 {
-    public static class DashboardData
+    public static class GetAllData
     {
         [FunctionName("GetAllData")]
         public static async Task<IActionResult> Run (
